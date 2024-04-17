@@ -1,1 +1,11 @@
 export {default as Navbar } from './Navbar';
+export {default as PlanCardHome } from './PlanCardHome';
+export {default as HelpCardHome } from './HelpCardHome';
+export {default as MohTvSection } from './MohTvSection';
+export {default as HomeBlogSection } from './HomeBlogSection';
+export {default as HomeHearUsSection } from './HomeHearUsSection';
+export {default as HomeMediaSection } from './HomeMediaSection';
+export {default as PartnersAndQuestions } from './PartnersAndQuestions';
+// export {default as PlanCardHome } from './PlanCardHome';
+// export {default as PlanCardHome } from './PlanCardHome';
+// export {default as PlanCardHome } from './PlanCardHome';

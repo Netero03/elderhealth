@@ -81,9 +81,15 @@ const Navbar = () => {
 
         <div className="flex items-center">
           {/* Circle Button with WhatsApp Logo */}
-          <button className="h-12 w-12 flex items-center justify-center rounded-full mr-4">
-            <img src="/assets/whatsapp.svg" alt="WhatsApp Logo" className="h-6" />
-          </button>
+          <Link to="" className='flex items-centre p-3 border-solid border-2 border-white rounded-full w-14 h-14 justify-center '>
+            <img
+              src="/assets/icons/whatsapp.svg"
+              alt='logo'
+              width={32}
+              height={32}
+              className='w-auto h-auto mx-auto'
+            />
+          </Link>
 
           {/* Login Button */}
           <button className="bg-white text-gray-800 font-semibold px-4 py-2 rounded-md">

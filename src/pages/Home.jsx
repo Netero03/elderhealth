@@ -1,7 +1,28 @@
 import React from 'react';
-import { Navbar } from '../components';
+import { HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, Navbar, PartnersAndQuestions, PlanCardHome } from '../components';
 
 const Home = () => {
+  const plans = [
+    {
+      plan: "Engage Plan",
+      // imageSrc: "https://example.com/enhance-plan.jpg",
+      moreText: "More busy",
+      buttonText: "Learn more",
+    },
+    {
+      plan: "Empower Plan",
+      // imageSrc: "https://example.com/enhance-plan.jpg",
+      moreText: "More safety",
+      buttonText: "Learn more",
+    },
+    {
+      plan: "Enhance Plan",
+      // imageSrc: "https://example.com/enhance-plan.jpg",
+      moreText: "More health",
+      buttonText: "Learn more",
+    },
+  ];
+
   return (
     <div className='relative sm:-8 min-h-scree flex flex-col w-full inter-font'>
       <Navbar />
@@ -66,6 +87,44 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <section className="flex justify-center items-center px-16 py-16 mt-20 w-full bg-stone-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
+        <div className="flex flex-col max-w-full w-[1128px]">
+          <header className="flex gap-5 text-zinc-900 max-md:flex-wrap max-md:max-w-full">
+            <h2 className="flex-auto text-4xl font-semibold tracking-tighter leading-10 max-md:max-w-full">
+              Get the care plan your parents need
+            </h2>
+            <p className="flex-auto my-auto text-base tracking-tighter leading-5 text-right">
+              We have all their needs covered.
+            </p>
+          </header>
+          <div className="mt-16 max-md:mt-10 max-md:max-w-full">
+            <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+              {plans.map((plan, index) => (
+                <PlanCardHome
+                  key={index}
+                  plan={plan.plan}
+                  imageSrc={plan.imageSrc}
+                  moreText={plan.moreText}
+                  buttonText={plan.buttonText}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+      <HelpCardHome />
+      <section className="flex flex-col justify-center w-full text-5xl font-semibold tracking-tighter text-center text-white leading-[72px] max-md:max-w-full max-md:text-4xl max-md:leading-[70px]">
+        <div className="flex justify-center items-center px-16 py-20 w-full bg-red-500 max-md:px-5 max-md:max-w-full max-md:text-4xl max-md:leading-[70px]">
+          <h1 className="justify-center mt-36 mb-24 max-w-full w-[859px] max-md:my-10 max-md:max-w-full max-md:text-4xl max-md:leading-[70px]">
+            Welcome to the world of ElderHealth, <br /> India's #1 eldercare brand
+          </h1>
+        </div>
+      </section>
+      <MohTvSection/>
+      <HomeBlogSection/>
+      <HomeHearUsSection/>
+      <HomeMediaSection/>
+      <PartnersAndQuestions/>
     </div>
   );
 }
