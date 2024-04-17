@@ -6,6 +6,6 @@ export {default as HomeBlogSection } from './HomeBlogSection';
 export {default as HomeHearUsSection } from './HomeHearUsSection';
 export {default as HomeMediaSection } from './HomeMediaSection';
 export {default as PartnersAndQuestions } from './PartnersAndQuestions';
-// export {default as PlanCardHome } from './PlanCardHome';
+export {default as Footer } from './Footer';
 // export {default as PlanCardHome } from './PlanCardHome';
 // export {default as PlanCardHome } from './PlanCardHome';

@@ -101,7 +101,7 @@ const PartnersAndQuestions = () => {
         slidesToShow: 8, // Number of slides to show at a time
         slidesToScroll: 1, // Number of slides to scroll
         autoplay: true,
-        autoplayspeed: 5000,
+        autoplayspeed: 6000,
         arrows: false,
         cssEase: "linear"
     };
@@ -135,15 +135,20 @@ const PartnersAndQuestions = () => {
                             Plans
                         </a>
                     </nav>
-                    <section className="flex flex-col self-stretch mt-6 text-lg tracking-tighter max-md:max-w-full">
-                        {questions.map((question, index) => (
-                            <div key={question.id} className={`flex gap-5 ${index % 2 === 0 ? 'mt-2.5' : ''} max-md:flex-wrap`}>
-                                <QuestionItem question={question.text} imageSrc={question.imageSrc} />
-                                {questions[index + 1] && (
-                                    <QuestionItem question={questions[index + 1].text} imageSrc={questions[index + 1].imageSrc} />
-                                )}
-                            </div>
-                        ))}
+                    <section className="flex flex-col self-stretch mt-6 text-md tracking-tighter max-md:max-w-full">
+                        {questions.map((question, index) => {
+                            if (index % 2 === 0) {
+                                return (
+                                    <div key={question.id} className={`flex gap-5 pb-1 mt-2.5 max-md:flex-wrap`}>
+                                        <QuestionItem question={question.text} imageSrc={question.imageSrc} />
+                                        {questions[index + 1] && (
+                                            <QuestionItem question={questions[index + 1].text} imageSrc={questions[index + 1].imageSrc} />
+                                        )}
+                                    </div>
+                                );
+                            }
+                            return null; // Skip rendering for odd-indexed questions
+                        })}
                     </section>
                 </div>
             </div>

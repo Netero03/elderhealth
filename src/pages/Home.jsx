@@ -1,5 +1,5 @@
 import React from 'react';
-import { HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, Navbar, PartnersAndQuestions, PlanCardHome } from '../components';
+import { Footer, HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, Navbar, PartnersAndQuestions, PlanCardHome } from '../components';
 
 const Home = () => {
   const plans = [
@@ -125,6 +125,7 @@ const Home = () => {
       <HomeHearUsSection/>
       <HomeMediaSection/>
       <PartnersAndQuestions/>
+      <Footer/>
     </div>
   );
 }
