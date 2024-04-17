@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.inter-font {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "slnt" 0;
+}
+
+.inter-font-100 {
+  font-weight: 100;
+}
+
+.inter-font-200 {
+  font-weight: 200;
+}
+
+.inter-font-300 {
+  font-weight: 300;
+}
+
+.inter-font-400 {
+  font-weight: 400;
+}
+
+.inter-font-500 {
+  font-weight: 500;
+}
+
+.inter-font-600 {
+  font-weight: 600;
+}
+
+.inter-font-700 {
+  font-weight: 700;
+}
+
+.inter-font-800 {
+  font-weight: 800;
+}
+
+.inter-font-900 {
+  font-weight: 900;
+}
