@@ -1,7 +1,49 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Footer, HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, Navbar, PartnersAndQuestions, PlanCardHome } from '../components';
 
 const Home = () => {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (video) {
+      video.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const [count, setCount] = useState({
+    eldersEmpowered: 0,
+    livesSaved: 0,
+    eventsOrganised: 0
+  });
+
+  // Function to simulate counting animation
+  const countAnimation = (target, value, duration) => {
+    const increment = Math.ceil(value / (duration / 16)); // Increment value for each step
+    let current = 0;
+
+    const interval = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        clearInterval(interval);
+        current = value;
+      }
+      setCount((prevCount) => ({
+        ...prevCount,
+        [target]: current
+      }));
+    }, 16); // Run every 16ms (60fps)
+  };
+
+  useEffect(() => {
+    // Simulate counting animation for each number
+    countAnimation("eldersEmpowered", 60000, 2000);
+    countAnimation("livesSaved", 500, 2000);
+    countAnimation("eventsOrganised", 4000, 2000);
+  }, []);
+
   const plans = [
     {
       plan: "Engage Plan",
@@ -22,31 +64,40 @@ const Home = () => {
       buttonText: "Learn more",
     },
   ];
-
   return (
     <div className='relative sm:-8 min-h-scree flex flex-col w-full inter-font'>
       <Navbar />
       <div className="w-full">
         {/* First Container */}
-        <div className="bg-white h-[700px] w-full px-10 pb-200 flex items-center justify-between relative lg:pr-40 lg:pl-40 ">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted={isMuted}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/assets/images/home-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="bg-transparent h-[700px] mb-6 w-full px-10 pb-200 flex items-center justify-between relative lg:pr-40 lg:pl-40 " >
           <div>
             {/* Title */}
-            <h1 className="text-4xl font-semibold">Title</h1>
+            <h1 className="text-6xl font-semibold text-white w-[50%]">Engage Empower Enhance</h1>
             {/* Subtitle */}
-            <p className="text-lg text-gray-600">Subtitle</p>
+            <p className=" text-2xl text-white mt-10 w-[48%]">Because those who made us deserve to age magnificently from the comfort of their own homes.</p>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center w-[40%] justify-end">
             {/* Circle Mute/Unmute Button */}
-            <button className="h-12 w-12 flex items-center justify-center bg-gray-500 rounded-full mr-4"></button>
+            <button onClick={toggleSound} className="h-12 w-12 flex items-center justify-center bg-transparent border border-white rounded-full mr-4"> {isMuted ? (<img src="/assets/icons/mute.svg" width={20} height={20} />) : (<img src="/assets/icons/unmute.svg" width={20} height={20} />)}</button>
             {/* Connect with Us Button */}
             <button className="bg-[#cd4746] text-white font-semibold px-4 py-2 rounded-full">Connect with Us</button>
           </div>
         </div>
 
         {/* Rounded Rectangle */}
-        <div className="bg-[#cd4746] rounded-full w-[1200px] h-[270px] justify-center items-center text-center py-10 flex flex-row absolute top-100 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+        <div className="bg-[#cd4746] rounded-full w-[1200px] h-[270px] justify-center items-center text-center py-10 flex flex-row absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
           <div className='p-16 '>
-            <p className="text-3xl font-semibold text-white">60000+ </p>
+            <p className="text-3xl font-semibold text-white">{count.eldersEmpowered}+</p>
             <p className="text-white">Elders Empowered</p>
           </div>
           <div className='p-16 '>
@@ -54,11 +105,11 @@ const Home = () => {
             <p className="text-white">Operated</p>
           </div>
           <div className='p-16 '>
-            <p className="text-3xl font-semibold text-white">500+ </p>
-            <p className="text-white">Elders Empowered</p>
+            <p className="text-3xl font-semibold text-white">{count.livesSaved}+ </p>
+            <p className="text-white">Lives Saved</p>
           </div>
           <div className='p-16 '>
-            <p className="text-3xl font-semibold text-white">4000+  </p>
+            <p className="text-3xl font-semibold text-white">{count.eventsOrganised}+  </p>
             <p className="text-white">Events Organised</p>
           </div>
         </div>
@@ -71,13 +122,25 @@ const Home = () => {
           {/* Cards Section */}
           <div className="w-full flex items-center justify-center flex-col">
             {/* Card */}
-            <div className="w-96 h-64 bg-white rounded-lg shadow-md p-6 mr-10">
-              <h3 className="text-xl font-semibold mb-4">Company Goals</h3>
-              <div className="w-full h-2 bg-gray-300 rounded-full mb-4">
-                <div className="w-3/4 h-full bg-blue-500 rounded-full"></div>
+            <section className="flex flex-col grow pb-px w-[850px] h-[425px] rounded-[30px] max-md:mt-5 max-md:max-w-full bg-red-500">
+              <div className="flex flex-col px-12 mt-[225px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
+                <h2 className="text-3xl font-bold tracking-tighter leading-10 text-white max-md:max-w-full">
+                  More Health
+                </h2>
+                <div className="flex gap-5 items-start max-md:flex-wrap max-md:max-w-full">
+                  <p className="flex-auto self-end mt-6 text-2xl tracking-tighter leading-7 text-white max-md:max-w-full">
+                    3 out of 4 seniors suffer from a chronic condition. Give your <br />
+                    parents access to better healthcare with Emoha.
+                  </p>
+                  <button className="justify-center self-start px-4 py-2 text-base font-medium tracking-tighter leading-7 text-center shadow bg-zinc-100 rounded-[50px] text-zinc-900">
+                    Learn more
+                  </button>
+                </div>
               </div>
-              <button className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md">Learn More</button>
-            </div>
+              <div className="flex flex-col justify-center px-10 py-7 mt-5 rounded-b-[30px] bg-black bg-opacity-60 max-md:px-5 max-md:max-w-full">
+                <div className="shrink-0 h-1 bg-white max-md:max-w-full" />
+              </div>
+            </section>
 
             {/* Left and Right Buttons for Navigation */}
             <div className='pt-10'>
@@ -120,12 +183,12 @@ const Home = () => {
           </h1>
         </div>
       </section>
-      <MohTvSection/>
-      <HomeBlogSection/>
-      <HomeHearUsSection/>
-      <HomeMediaSection/>
-      <PartnersAndQuestions/>
-      <Footer/>
+      <MohTvSection />
+      <HomeBlogSection />
+      <HomeHearUsSection />
+      <HomeMediaSection />
+      <PartnersAndQuestions />
+      <Footer />
     </div>
   );
 }

@@ -9,6 +9,18 @@
   font-variation-settings: "slnt" 0;
 }
 
+/* Define pink shadow */
+.shadow-pink {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0px 0px 0px rgba(255, 111, 147, 0.5);
+}
+
+/* Define pink shadow on hover */
+.shadow-pink:hover,
+.shadow-pink-hover {
+  box-shadow: 0px 0px 10px 0px rgba(255, 111, 147, 0.8);
+}
+
 .inter-font-100 {
   font-weight: 100;
 }

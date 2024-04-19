@@ -97,12 +97,12 @@ const PartnersAndQuestions = () => {
     const settings = {
         dots: false, // Show dots navigation
         infinite: true, // Loop the slider infinitely
-        speed: 2000, // Transition speed in milliseconds
+        speed: 1000, // Transition speed in milliseconds
         slidesToShow: 8, // Number of slides to show at a time
         slidesToScroll: 1, // Number of slides to scroll
         autoplay: true,
-        autoplayspeed: 6000,
-        arrows: false,
+        autoplayspeed: 4000,
+        arrows: true,
         cssEase: "linear"
     };
 
