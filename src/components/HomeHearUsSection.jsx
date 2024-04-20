@@ -51,21 +51,22 @@ const HomeHearUsSection = () => {
                 <div className="flex overflow-hidden relative flex-col justify-center items-center px-16 py-20 w-full min-h-[550px] max-md:px-5 max-md:max-w-full max-md:text-4xl max-md:leading-[70px]">
                     <img
                         loading="lazy"
-                        src="https://cdn.builder.io/api/v1/image/assets/TEMP/e3e4459ceb298c8a4232a871bb6965e311fdc2eac6e3656cc72ee232b1c79fc1?apiKey=fdc97f1298d9417ba73f632a312daddd&"
+                        src="/assets/images/hearfromus-bg.jpg"
                         alt="Background image"
-                        className="object-cover absolute inset-0 size-full"
+                        className="object-cover absolute inset-0 size-full opacity-80   "
                     />
                     <h1 className="relative justify-center mt-36 mb-24 max-w-full w-[691px] max-md:my-10 max-md:max-w-full max-md:text-4xl max-md:leading-[70px]">
                         Good news travels fast: <br /> What everyone is talking about us
                     </h1>
                 </div>
-            </section>
-            <img
+                <img
                 loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/167ae7d12f8bc5e99eb40940fb36c311518da29765504f5d9253c7d652891173?apiKey=fdc97f1298d9417ba73f632a312daddd&"
-                alt="Decorative image"
-                className="max-w-full aspect-square w-[250px] absolute z-100 top-[6425px] left-24"
+                src="/assets/icons/quotation-mark.svg"
+                alt="Decorative image" 
+                className="max-w-full aspect-square w-[250px] absolute z-100 top-[500px] left-24 bg-white p-10 rounded-full"
             />
+            </section>
+            
             <section className="px-20 pb-20 w-full bg-red-500 max-md:px-5 max-md:max-w-full">
                 <div className="flex gap-10 max-md:flex-col max-md:gap-0 pt-32">
                     <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">

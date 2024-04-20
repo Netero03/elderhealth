@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
+import MyLink from "./MyLink";
 
 const BlogCard = ({ blog }) => {
     return (
-        <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full cursor-pointer shadow-pink transition duration-300 hover:shadow-pink-hover rounded-3xl">
             <div className="flex flex-col grow text-zinc-900 max-md:mt-10">
                 <div className="flex overflow-hidden relative flex-col items-start px-3.5 pt-6 pb-20 w-full text-xs font-medium tracking-wide leading-5 text-center capitalize whitespace-nowrap aspect-[0.94] max-md:pr-5">
                     <img loading="lazy" src={blog.image} alt={blog.imageAlt} className="object-cover absolute inset-0 size-full" />
@@ -15,6 +16,9 @@ const BlogCard = ({ blog }) => {
                     <div className="justify-center" dangerouslySetInnerHTML={{ __html: blog.title }}></div>
                 </div>
             </div>
+            <button className="justify-center px-9 py-4 bg-red-500 shadow rounded-[40px] max-md:px-5 w-[50%] ml-20 mb-5">
+                Read More 
+            </button>
         </div>
     );
 }
@@ -51,9 +55,9 @@ const HomeBlogSection = () => {
                     <p className="flex-auto text-lg tracking-tighter leading-10 max-md:max-w-full">
                         Get the latest information on everything your parents need.
                     </p>
-                    <Link className="text-base font-medium tracking-normal leading-7 text-center">
+                    <MyLink to="/blogs" className="text-base font-medium tracking-normal leading-7 text-center">
                         View all →
-                    </Link>
+                    </MyLink>
                 </div>
                 <div className="flex flex-col mt-11 max-md:mt-10 max-md:max-w-full">
                     <div className="max-md:max-w-full">
@@ -63,13 +67,7 @@ const HomeBlogSection = () => {
                             ))}
                         </div>
                     </div>
-                    <div className="flex gap-5 justify-between mt-12 ml-5 max-w-full text-sm font-medium tracking-tight leading-6 text-center text-white w-[948px] max-md:flex-wrap max-md:mt-10">
-                        {blogs.map((_, index) => (
-                            <button key={index} className="justify-center px-9 py-4 bg-red-500 shadow rounded-[40px] max-md:px-5">
-                                Read More
-                            </button>
-                        ))}
-                    </div>
+                    
                 </div>
             </div>
         </section>

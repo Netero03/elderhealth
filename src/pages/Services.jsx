@@ -1,14 +1,20 @@
-import * as React from "react";
-import { Footer, Navbar } from "../components";
+import { Footer, MyLink, Navbar } from "../components";
+import React, { useRef, useState } from 'react';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-function HowWeHelpCard({ icon, title }) {
-  return (
-    <div className="flex flex-col px-14 py-16 rounded-3xl bg-gray-200 bg-opacity-80 max-md:px-5">
-      <img loading="lazy" src={icon} alt="" className="self-center w-11 aspect-square" />
-      <div className="mt-8">{title}</div>
-    </div>
-  );
-}
+
+
+
+// function HowWeHelpCard({ icon, title }) {
+//   return (
+//     <div className="flex flex-col px-14 py-16 rounded-3xl bg-gray-200 bg-opacity-80 max-md:px-5">
+//       <img loading="lazy" src={icon} alt="" className="self-center w-11 aspect-square" />
+//       <div className="mt-8">{title}</div>
+//     </div>
+//   );
+// }
 
 function ServiceItem({ title, features, buttonText }) {
   return (
@@ -43,16 +49,28 @@ function MostBookedServiceCard({ image, title, buttonText }) {
   );
 }
 
-const Services = () => {
-  const howWeHelpCards = [
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/6cc956a8f53405ba19b81be3cc60116c987f791e03ead8bc2982d94b4d0b318f?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Medical equipment &\ndevices" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/d4ef3ff8a5eeae40f289ed0d57bcece888cfd836cd660422eec8063451f71384?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Elder tech" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/e8406ea8f6c2614d50381474c2cb6831f0388e07b1373e2496df68b79007701a?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Health support" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/de3425d92cfea14b49b24bea70ff41f3d5cbaf82deb2c0651123ef1787ae5e5b?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Home health care" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/77f590694f91b5efa531b0f262f61d892c286b11f65f0420e975f1a64f415c77?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Tele consultation" },
-    { icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/065e0176be2a2aff8907dcc016b44f68413f6567b7820b0aef85dca878d9a533?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Lab & diagnostics" },
-  ];
+const HelpCard = ({ imageSrc, title, isSelected, onClick }) => (
+  <div className={`flex flex-col px-8 py-12 mx-2 leading-10 text-white rounded-3xl ${isSelected ? 'bg-red-500' : 'bg-gray-500'}`} onClick={onClick}>
+      <img loading="lazy" src={imageSrc} alt="" className="self-center w-11 aspect-[1.1]" />
+      <div className="justify-center mt-8">{title}</div>
+  </div>
+);
 
+const Services = () => {
+  const [selectedCardIndex, setSelectedCardIndex] = useState(0);
+  const sliderRef = useRef(null);
+
+  const helpCards = [
+    { imageSrc: "/assets/icons/doctor-bag-svgrepo-com.svg", title: "Medical equipment &\ndevices" },
+    { imageSrc: "/assets/icons/webcam-alt-2-svgrepo-com.svg", title: "Elder tech " },
+    { imageSrc: "/assets/icons/health-support.svg", title: "Health Support" },
+    { imageSrc: "/assets/icons/heart-beat-2-svgrepo-com.svg", title: "Home Heath Care" },
+    { imageSrc: "/assets/icons/telephone-svgrepo-com.svg", title: "Tele consultation" },
+    { imageSrc: "/assets/icons/webcam-alt-2-svgrepo-com.svg", title: "Lab & Diagnostics" },
+    { imageSrc: "/assets/icons/health-support.svg", title: "Convenience" },
+    { imageSrc: "/assets/icons/telephone-svgrepo-com.svg", title: "Home Services" },
+
+  ];
   const serviceItems = [
     {
       title: "Oxygen Cylinder",
@@ -114,9 +132,41 @@ const Services = () => {
     { image: "https://cdn.builder.io/api/v1/image/assets/TEMP/71b98dcf3025048d046fbd77d17a0327ed654d2922897d2d916931ed3eafcdf9?apiKey=17ae877e53e24efa98605986dde5cfcc&", title: "Nurse", buttonText: "Book service" },
   ];
 
+  const handleCardClick = (index) => {
+    setSelectedCardIndex(index);
+  };
+
+  const PrevArrow = (props) => {
+    const { onClick } = props;
+    return <button className="absolute top-[40%] left-[-25px] transform -translate-y-1/2 z-10" onClick={onClick}>{'<'}</button>;
+  };
+
+  const NextArrow = (props) => {
+    const { onClick } = props;
+    return <button className="absolute top-[40%] right-[-25px] transform -translate-y-1/2 z-10" onClick={onClick}>{'>'}</button>;
+  };
+
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    initialSlide: selectedCardIndex,
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
+    beforeChange: (current, next) => {
+      // Update selected card index only if it's not the current one
+      if (next !== selectedCardIndex) {
+        setSelectedCardIndex(selectedCardIndex);
+      }
+    },
+  };
+
   return (
     <div className="inter-font">
-      <Navbar/>
+      <Navbar />
       <img
         loading="lazy"
         srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/429b8c1dfdd70007e71b2d04618e4ff8d9a8898f91f550beb96d3b22534cd5b2?apiKey=17ae877e53e24efa98605986dde5cfcc&"
@@ -124,19 +174,32 @@ const Services = () => {
       />
       <div className="flex flex-col justify-end pt-12 w-full bg-stone-50 max-md:max-w-full">
         <div className="flex flex-col items-start self-center px-5 w-full text-lg max-w-[1689px] max-md:max-w-full">
-          <header className="px-40 flex gap-5 self-stretch text-4xl font-semibold tracking-tighter leading-10 text-zinc-900 max-md:flex-wrap max-md:pr-5 max-md:max-w-full">
-            <h1 className="flex-auto">How we help</h1>
-            <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/ac653108e27bef325880c57528d9bbcced4582c5d4517bdfc183042d002a2465?apiKey=17ae877e53e24efa98605986dde5cfcc&" alt="" className="shrink-0 self-start mt-3.5 aspect-[2.78] w-[75px]" />
-          </header>
-          <section className="pl-32 flex gap-5 justify-between self-stretch mt-9 ml-5 font-medium tracking-tighter text-center leading-[235%] text-zinc-900 max-md:flex-wrap max-md:max-w-full">
-            <div className="flex flex-col justify-end px-8 py-12 leading-10 text-white bg-red-500 rounded-3xl max-md:px-5">
-              <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/6cc956a8f53405ba19b81be3cc60116c987f791e03ead8bc2982d94b4d0b318f?apiKey=17ae877e53e24efa98605986dde5cfcc&" alt="" className="self-center w-11 aspect-[1.1]" />
-              <div className="mt-8">Medical equipment &<br /> devices</div>
+          <div className="px-40 self-stretch  flex flex-col mt-1.5 max-w-full w-[1480px]">
+            <div className="flex gap-5 text-black max-md:flex-wrap max-md:max-w-full">
+              <h2 className="flex-auto text-4xl font-semibold tracking-tighter leading-[56.16px]">
+                How we help
+              </h2>
+              <MyLink to="/services" className="flex-auto self-start text-base font-medium tracking-normal leading-8 text-center">
+                View all →
+              </MyLink>
             </div>
-            {howWeHelpCards.map((card, index) => (
-              <HowWeHelpCard key={index} icon={card.icon} title={card.title} />
-            ))}
-          </section>
+            <div className="w-full flex gap-px mt-14 text-lg font-medium tracking-tighter leading-10 text-center text-zinc-900 max-md:flex-wrap max-md:mt-10">
+              <div className="flex flex-auto gap-5 justify-end max-md:flex-wrap max-md:max-w-full w-full">
+                <Slider {...settings} className='w-full flex justify-end self-center mt-16 max-md:flex-wrap max-md:mt-10 pb-16 mx-10' ref={sliderRef}>
+                  {helpCards.map((card, index) => (
+                    <HelpCard
+                      key={index}
+                      imageSrc={card.imageSrc}
+                      title={card.title}
+                      isSelected={selectedCardIndex === index}
+                      onClick={() => handleCardClick(index)}
+                    />
+                  ))}
+                </Slider>
+              </div>
+            </div>
+
+          </div>
           <section>
             {serviceItems.map((item, index) => (
               <ServiceItem
@@ -170,7 +233,7 @@ const Services = () => {
           </div>
         </section>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

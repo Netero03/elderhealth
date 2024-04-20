@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import MyLink from './MyLink';
 
 function MediaCoverageItem({ src, alt }) {
   return (
@@ -41,9 +42,9 @@ const HomeMediaSection = () => {
               <h2 className="flex-auto text-4xl font-semibold tracking-tighter leading-[57.96px]">
                 Media coverage
               </h2>
-              <Link to="/media" className="my-auto text-base font-medium tracking-normal leading-7 text-center">
+              <MyLink to="/media" className="my-auto text-base font-medium tracking-normal leading-7 text-center">
                 View all →
-              </Link>
+              </MyLink>
             </header>
             <div className="mt-16 max-md:mt-10 max-md:max-w-full">
               <div className="flex gap-5 max-md:flex-col max-md:gap-0">

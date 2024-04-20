@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Footer, HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, Navbar, PartnersAndQuestions, PlanCardHome } from '../components';
+import { Footer, HelpCardHome, HomeBlogSection, HomeHearUsSection, HomeMediaSection, MohTvSection, MyLink, MySlider, Navbar, PartnersAndQuestions, PlanCardHome, SliderComponent } from '../components';
 
 const Home = () => {
   const [isMuted, setIsMuted] = useState(true);
@@ -116,13 +116,11 @@ const Home = () => {
 
         {/* Second Container */}
         <div className="bg-gray-100 h-full w-full flex flex-col items-center ">
-          {/* Title */}
           <h2 className="text-3xl font-semibold mb-10 pt-40 pr-52 pl-52 text-center">Help your parents age magnificently with India's most trusted senior care brand</h2>
 
           {/* Cards Section */}
-          <div className="w-full flex items-center justify-center flex-col">
-            {/* Card */}
-            <section className="flex flex-col grow pb-px w-[850px] h-[425px] rounded-[30px] max-md:mt-5 max-md:max-w-full bg-red-500">
+          <div className="w-full flex items-center justify-center flex-col ">
+            {/* <section className="flex flex-col grow pb-px w-[850px] h-[425px] rounded-[30px] max-md:mt-5 max-md:max-w-full bg-red-500">
               <div className="flex flex-col px-12 mt-[225px] max-md:px-5 max-md:mt-10 max-md:max-w-full">
                 <h2 className="text-3xl font-bold tracking-tighter leading-10 text-white max-md:max-w-full">
                   More Health
@@ -132,9 +130,9 @@ const Home = () => {
                     3 out of 4 seniors suffer from a chronic condition. Give your <br />
                     parents access to better healthcare with Emoha.
                   </p>
-                  <button className="justify-center self-start px-4 py-2 text-base font-medium tracking-tighter leading-7 text-center shadow bg-zinc-100 rounded-[50px] text-zinc-900">
+                  <MyLink className="justify-center self-start px-4 py-2 text-base font-medium tracking-tighter leading-7 text-center shadow bg-zinc-100 rounded-[50px] text-zinc-900 transition duration-150 ease-in-out hover:scale-105">
                     Learn more
-                  </button>
+                  </MyLink>
                 </div>
               </div>
               <div className="flex flex-col justify-center px-10 py-7 mt-5 rounded-b-[30px] bg-black bg-opacity-60 max-md:px-5 max-md:max-w-full">
@@ -142,12 +140,12 @@ const Home = () => {
               </div>
             </section>
 
-            {/* Left and Right Buttons for Navigation */}
             <div className='pt-10'>
               <button className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md mr-4">Left</button>
               <button className="bg-blue-500 text-white font-semibold px-4 py-2 rounded-md">Right</button>
-            </div>
+            </div> */}
           </div>
+          <MySlider />
         </div>
       </div>
       <section className="flex justify-center items-center px-16 py-16 mt-20 w-full bg-stone-50 max-md:px-5 max-md:mt-10 max-md:max-w-full">
@@ -161,7 +159,7 @@ const Home = () => {
             </p>
           </header>
           <div className="mt-16 max-md:mt-10 max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+            <div className="flex gap-5 max-md:flex-col max-md:gap-0 transition duration-150 ease-in-out hover:scale-105 cursor-pointer">
               {plans.map((plan, index) => (
                 <PlanCardHome
                   key={index}
